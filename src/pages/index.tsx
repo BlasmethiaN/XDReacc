@@ -1,6 +1,7 @@
 import { Button, Layout } from 'antd'
 
 import Box from '../components/common/Box'
+import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -17,7 +18,9 @@ const Navbar = () => (
   <Header>
     <Box flex fullWidth justifyContent="space-between" alignItems="center">
       <XDlogo src="/xdanku_logo.png" alt="XDanku logo" />
-      <Button type="primary">Post</Button>
+      <Link href="/testpage">
+        <Button type="primary">Post</Button>
+      </Link>
     </Box>
   </Header>
 )
