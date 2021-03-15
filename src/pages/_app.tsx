@@ -1,5 +1,5 @@
-import '../styles/globals.less'
-import '../styles/antd-custom.less'
+import '../../styles/globals.less'
+import '../../styles/antd-custom.less'
 
 import { AppProps } from 'next/app'
 import { Helmet } from 'react-helmet'
@@ -9,7 +9,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Helmet>
-        <title>nextJSin</title>
+        <title>XDanku</title>
       </Helmet>
       <Component {...pageProps} />
     </>
