@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
+
 import { Drawer } from 'antd'
-import { FiAlignJustify } from 'react-icons/fi'
+import { MenuOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 
-const OpenSide = styled.button`
-  background-color: transparent;
-  color: white;
-  border: none;
+const OpenSide = styled(MenuOutlined)`
   font-size: 30px;
   cursor: pointer;
-  outline: none;
 `
 
 const Sidemenu: React.FC = () => {
@@ -23,9 +20,7 @@ const Sidemenu: React.FC = () => {
 
   return (
     <>
-      <OpenSide onClick={showDrawer}>
-        <FiAlignJustify />
-      </OpenSide>
+      <OpenSide onClick={showDrawer} />
       <Drawer
         title="Basic Drawer"
         placement="left"

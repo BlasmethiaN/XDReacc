@@ -1,14 +1,14 @@
-import { Layout } from 'antd'
+import { Content, Layout } from '../components/common/Layout.styled'
 
-import React from 'react'
 import Navbar from '../components/common/Navbar'
+import React from 'react'
 
 const IndexPage = () => (
   <Layout>
     <Navbar />
-    <Layout.Content>
+    <Content>
       <h5>Hello World xd</h5>
-    </Layout.Content>
+    </Content>
   </Layout>
 )
 
