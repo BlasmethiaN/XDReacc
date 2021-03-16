@@ -14,3 +14,8 @@ export const Header = styled(_Layout.Header)`
 export const Content = styled(_Layout.Content)`
   flex-grow: 1;
 `
+
+export const XDlogo = styled.img`
+  width: 140px;
+  cursor: pointer;
+`

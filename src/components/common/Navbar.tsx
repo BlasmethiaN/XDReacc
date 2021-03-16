@@ -1,24 +1,33 @@
 import Box from './Box'
 import { Button } from 'antd'
-import { Header } from './Layout.styled'
+import { Header, XDlogo } from './Layout.styled'
 import Link from 'next/link'
 import React from 'react'
 import Sidemenu from './Sidemenu'
-import styled from 'styled-components'
+import Search from 'antd/lib/input/Search'
+import { SearchOutlined } from '@ant-design/icons'
 
-const XDlogo = styled.img`
-  width: 140px;
-  cursor: pointer;
-`
+const onSearch = (e: string) => {
+  console.log(e)
+}
 
 const Navbar = () => (
   <Header>
-    <Box flex fullWidth justifyContent="space-between" alignItems="center">
+    <Box flex fullWidth justifyContent="space-between" alignItems="center" gap="30px">
       <Box flex gap="20px" alignItems="center">
         <Sidemenu />
         <Link href="#">
           <XDlogo src="/xdanku_logo.png" alt="XDanku logo" />
         </Link>
+      </Box>
+      <Box flex alignItems="center" flexGrow={2} style={{ maxWidth: '500px' }}>
+        <Search
+          placeholder="input search text"
+          allowClear
+          enterButton={<SearchOutlined />}
+          size="large"
+          onSearch={onSearch}
+        />
       </Box>
       <Link href="/testpage">
         <Button type="primary">Post</Button>
