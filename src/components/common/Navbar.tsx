@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 import Sidemenu from './Sidemenu'
 import SearchBar from './SearchBar'
+import Profile from './Profile'
 
 const Navbar = () => (
   <Header>
@@ -18,9 +19,12 @@ const Navbar = () => (
       <Box flex alignItems="center" flexGrow={2} style={{ maxWidth: '500px' }}>
         <SearchBar />
       </Box>
-      <Link href="/testpage">
-        <Button type="primary">Post</Button>
-      </Link>
+      <Box flex alignItems="center" flexDirection="row" gap="20px">
+        <Link href="/testpage">
+          <Button type="primary">Post</Button>
+        </Link>
+        <Profile />
+      </Box>
     </Box>
   </Header>
 )

@@ -21,13 +21,7 @@ const Sidemenu: React.FC = () => {
   return (
     <>
       <OpenSide onClick={showDrawer} />
-      <Drawer
-        title="Basic Drawer"
-        placement="left"
-        closable={true}
-        onClose={onClose}
-        visible={visible}
-      >
+      <Drawer title="Menu" placement="left" closable={true} onClose={onClose} visible={visible}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>

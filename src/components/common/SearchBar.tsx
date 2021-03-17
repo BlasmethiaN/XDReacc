@@ -38,7 +38,13 @@ const SearchBar = () => {
 
   return (
     <Box flex fullWidth alignItems="center">
-      <SearchInput allowClear onChange={onChange} value={searchTerm} onPressEnter={onSearch} />
+      <SearchInput
+        allowClear
+        onChange={onChange}
+        value={searchTerm}
+        onPressEnter={onSearch}
+        placeholder="Search (#tag1, #tag2)"
+      />
       <SearchButton type="primary" onClick={onSearch}>
         <SearchOutlined />
       </SearchButton>
