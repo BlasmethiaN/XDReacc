@@ -21,7 +21,9 @@ const Navbar = () => (
       </Box>
       <Box flex alignItems="center" flexDirection="row" gap="20px">
         <Link href="/testpage">
-          <Button type="primary">Post</Button>
+          <Button type="ghost" size="large">
+            Post
+          </Button>
         </Link>
         <Profile />
       </Box>
