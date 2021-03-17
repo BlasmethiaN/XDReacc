@@ -6,6 +6,16 @@ import React from 'react'
 import Sidemenu from './Sidemenu'
 import SearchBar from './SearchBar'
 import Profile from './Profile'
+import styled from 'styled-components'
+import theme from '../../styling/theme'
+
+const PostButton = styled(Button)`
+  &:hover {
+    background-color: ${theme.palette.light[5]};
+    border: 1px solid white;
+    color: white;
+  }
+`
 
 const Navbar = () => (
   <Header>
@@ -21,9 +31,9 @@ const Navbar = () => (
       </Box>
       <Box flex alignItems="center" flexDirection="row" gap="20px">
         <Link href="/testpage">
-          <Button type="ghost" size="large">
+          <PostButton type="ghost" size="large">
             Post
-          </Button>
+          </PostButton>
         </Link>
         <Profile />
       </Box>
