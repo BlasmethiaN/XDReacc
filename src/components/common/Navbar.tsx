@@ -29,7 +29,7 @@ const Navbar = () => (
       <Box flex alignItems="center" flexGrow={2} style={{ maxWidth: '500px' }}>
         <SearchBar />
       </Box>
-      <Box flex alignItems="center" flexDirection="row" gap="20px">
+      <Box flex alignItems="center" flexDirection="row" gap="10px">
         <Link href="/testpage">
           <PostButton type="ghost" size="large">
             Post
