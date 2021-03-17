@@ -7,7 +7,12 @@ const IndexPage = () => (
   <Layout>
     <Navbar />
     <Content>
-      <h5>Hello World xd</h5>
+      <h4>I'm a god</h4>
+      <h4>How can you kill a god?</h4>
+      <h4>What a grand and intoxicating innocence</h4>
+      <h4>I'm a god</h4>
+      <h4>How can you kill a god?</h4>
+      <h4>Shame on you, sweet Nerevar</h4>
     </Content>
   </Layout>
 )
