@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@ant-design/colors": "^6.0.0",
     "@ant-design/icons": "^4.5.0",
     "@types/react-helmet": "^6.1.0",
     "antd": "^4.14.0",

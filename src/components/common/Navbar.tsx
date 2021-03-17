@@ -1,15 +1,10 @@
-import Box from './Box'
 import { Button } from 'antd'
 import { Header, XDlogo } from './Layout.styled'
+import Box from './Box'
 import Link from 'next/link'
 import React from 'react'
 import Sidemenu from './Sidemenu'
-import Search from 'antd/lib/input/Search'
-import { SearchOutlined } from '@ant-design/icons'
-
-const onSearch = (e: string) => {
-  console.log(e)
-}
+import SearchBar from './SearchBar'
 
 const Navbar = () => (
   <Header>
@@ -21,13 +16,7 @@ const Navbar = () => (
         </Link>
       </Box>
       <Box flex alignItems="center" flexGrow={2} style={{ maxWidth: '500px' }}>
-        <Search
-          placeholder="input search text"
-          allowClear
-          enterButton={<SearchOutlined />}
-          size="large"
-          onSearch={onSearch}
-        />
+        <SearchBar />
       </Box>
       <Link href="/testpage">
         <Button type="primary">Post</Button>
