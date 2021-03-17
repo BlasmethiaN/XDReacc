@@ -17,6 +17,9 @@ const SearchInput = styled(Input)`
     color: ${theme.bgColor.dark};
     font-size: 15px;
   }
+  & .anticon:hover {
+    color: ${theme.palette.dark[0]};
+  }
 `
 
 const SearchButton = styled(Button)`
