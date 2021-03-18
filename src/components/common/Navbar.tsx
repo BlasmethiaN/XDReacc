@@ -12,11 +12,11 @@ const Navbar = () => (
     <Box flex fullWidth justifyContent="space-between" alignItems="center" gap="30px">
       <Box flex gap="20px" alignItems="center">
         <Sidemenu />
-        <Link href="#">
+        <Link href="/">
           <XDlogo src="/xdanku_logo.png" alt="XDanku logo" />
         </Link>
       </Box>
-      <Box flex alignItems="center" flexGrow={2} style={{ maxWidth: '500px' }}>
+      <Box flex alignItems="center" style={{ maxWidth: '500px', flexGrow: 2 }}>
         <SearchBar />
       </Box>
       <Box flex alignItems="center" flexDirection="row" gap="10px">

@@ -14,7 +14,7 @@ const ImgProfile = styled.img`
 const Profile = () => {
   return (
     <Box flex alignItems="center" gap="10px">
-      <Link href="#">
+      <Link href="login">
         <Button type="primary" size="large">
           Login
         </Button>
