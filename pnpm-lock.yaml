@@ -3,12 +3,14 @@ dependencies:
   '@ant-design/icons': 4.5.0_react-dom@17.0.1+react@17.0.1
   '@types/react-helmet': 6.1.0
   antd: 4.14.0_89622fd8e4ec221151a62783d49305af
+  axios: 0.21.1
   dayjs: 1.10.4
   next: 10.0.9_e68a58ba4d880b84ec68fa9fa829c280
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
   react-helmet: 6.1.0_react@17.0.1
   styled-components: 5.2.1_react-dom@17.0.1+react@17.0.1
+  swr: 0.5.4_react@17.0.1
 devDependencies:
   '@types/node': 12.20.6
   '@types/react': 17.0.3
@@ -924,6 +926,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+  /axios/0.21.1:
+    dependencies:
+      follow-redirects: 1.13.3
+    dev: false
+    resolution:
+      integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   /babel-code-frame/6.26.0:
     dependencies:
       chalk: 1.1.3
@@ -1091,9 +1099,9 @@ packages:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
   /browserslist/4.16.1:
     dependencies:
-      caniuse-lite: 1.0.30001202
+      caniuse-lite: 1.0.30001204
       colorette: 1.2.2
-      electron-to-chromium: 1.3.690
+      electron-to-chromium: 1.3.696
       escalade: 3.1.1
       node-releases: 1.1.71
     dev: false
@@ -1207,10 +1215,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
-  /caniuse-lite/1.0.30001202:
+  /caniuse-lite/1.0.30001204:
     dev: false
     resolution:
-      integrity: sha512-ZcijQNqrcF8JNLjzvEiXqX4JUYxoZa7Pvcsd9UD8Kz4TvhTonOSNRsK+qtvpVL4l6+T1Rh4LFtLfnNWg6BGWCQ==
+      integrity: sha512-JUdjWpcxfJ9IPamy2f5JaRDCaqJOxDzOSKtbdx4rH9VivMd1vIzoPumsJa9LoMIi4Fx2BV2KZOxWhNkBjaYivQ==
   /chalk/1.1.3:
     dependencies:
       ansi-styles: 2.2.1
@@ -1546,7 +1554,7 @@ packages:
       integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
   /cssnano-preset-simple/1.2.2:
     dependencies:
-      caniuse-lite: 1.0.30001202
+      caniuse-lite: 1.0.30001204
       postcss: 7.0.35
     dev: false
     resolution:
@@ -1725,10 +1733,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-07z8uv2wMyS51kKhD1KsdXJg5WQ6t93RneqRxUHnskXVtlYYkLqM0gqStQZ3pj073g687jPCHrqNfCzawLYh5g==
-  /electron-to-chromium/1.3.690:
+  /electron-to-chromium/1.3.696:
     dev: false
     resolution:
-      integrity: sha512-zPbaSv1c8LUKqQ+scNxJKv01RYFkVVF1xli+b+3Ty8ONujHjAMg+t/COmdZqrtnS1gT+g4hbSodHillymt1Lww==
+      integrity: sha512-yuKKvBuXe+IWRp6DxqbGUxbPtamh5C+mEC38vZ0KLxQFpGG9TQn0DbPL9WhWhQnfNhLyzxmPYlCzShbs8QxGbA==
   /elliptic/6.5.4:
     dependencies:
       bn.js: 4.12.0
@@ -2238,6 +2246,17 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3Z4XhFZ3992uIq0XOqb9AreonueSYphE6oYbpt5+3u06JWklbsPkNv3ZKkP9Bz/r+1MWCaMoSQ28P85+1Yc77w==
+  /follow-redirects/1.13.3:
+    dev: false
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
   /for-in/1.0.2:
     dev: true
     engines:
@@ -3438,7 +3457,7 @@ packages:
       ast-types: 0.13.2
       browserslist: 4.16.1
       buffer: 5.6.0
-      caniuse-lite: 1.0.30001202
+      caniuse-lite: 1.0.30001204
       chalk: 2.4.2
       chokidar: 3.5.1
       crypto-browserify: 3.12.0
@@ -5290,6 +5309,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
+  /swr/0.5.4_react@17.0.1:
+    dependencies:
+      react: 17.0.1
+    dev: false
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0
+    resolution:
+      integrity: sha512-TUSxxuC8uP/4JKV22ml91WQ0tbif+9HVhm683xm8KYfwZIW5ogwcnU634dg3x6N7azpIDIOLokoIi+z5vCz/yA==
   /table/6.0.7:
     dependencies:
       ajv: 7.2.1
@@ -5749,6 +5776,7 @@ specifiers:
   '@zeit/next-less': ^1.0.1
   antd: ^4.14.0
   antd-dayjs-webpack-plugin: ^1.0.6
+  axios: ^0.21.1
   babel-plugin-import: ^1.13.3
   babel-plugin-styled-components: ^1.12.0
   dayjs: ^1.10.4
@@ -5766,5 +5794,6 @@ specifiers:
   react-dom: ^17.0.1
   react-helmet: ^6.1.0
   styled-components: ^5.2.1
+  swr: ^0.5.4
   typescript: '4.0'
   webpack: 4.46.0

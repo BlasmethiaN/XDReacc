@@ -13,6 +13,12 @@ export const Header = styled(_Layout.Header)`
 
 export const Content = styled(_Layout.Content)`
   flex-grow: 1;
+  flex-direction: column;
+`
+
+export const CenteredContent = styled(Content)`
+  justify-content: center;
+  align-items: center;
 `
 
 export const XDlogo = styled.img`

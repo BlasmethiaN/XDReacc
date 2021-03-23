@@ -1,5 +1,8 @@
+import { Button, Checkbox, Form, Input } from 'antd'
+
 import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { UserService } from '../../api/user/user.service'
+import { mutate } from 'swr'
 
 const layout = {
   labelCol: { span: 8 },
@@ -10,8 +13,11 @@ const tailLayout = {
 }
 
 const LoginForm = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+  const onFinish = async (data: any) => {
+    const response = await UserService.login(data)
+    if (response.type == 'data') {
+      mutate('/user')
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
