@@ -1,9 +1,10 @@
 import { Button, Checkbox, Form, Input } from 'antd'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Route, useCurrentUser } from '../../api/routes'
 
+import { LoginError } from '../../api/user/types/login-user-response.dto'
 import { UserService } from '../../api/user/user.service'
 import { mutate } from 'swr'
-import { useCurrentUser } from '../../api/routes'
 import { useRouter } from 'next/router'
 
 const layout = {
@@ -17,6 +18,7 @@ const tailLayout = {
 const LoginForm = () => {
   const router = useRouter()
   const { data: currentUser } = useCurrentUser()
+  const [error, setError] = useState<LoginError | null>()
 
   useEffect(() => {
     if (currentUser) {
@@ -25,10 +27,13 @@ const LoginForm = () => {
   }, [currentUser])
 
   const onFinish = async (data: any) => {
+    setError(null)
     const response = await UserService.login(data)
     if (response.type == 'data') {
-      mutate('/user')
+      mutate(Route.CURRENT_USER)
       router.replace('/')
+    } else {
+      setError(response.error)
     }
   }
 
@@ -48,6 +53,8 @@ const LoginForm = () => {
         label="Username"
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
+        validateStatus={error == LoginError.WRONG_USERNAME ? 'error' : ''}
+        help={error == LoginError.WRONG_USERNAME && 'Wrong username!'}
       >
         <Input />
       </Form.Item>
@@ -56,6 +63,8 @@ const LoginForm = () => {
         label="Password"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
+        validateStatus={error == LoginError.WRONG_PASSWORD ? 'error' : ''}
+        help={error == LoginError.WRONG_PASSWORD && 'Wrong password!'}
       >
         <Input.Password />
       </Form.Item>
