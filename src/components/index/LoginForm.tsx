@@ -1,8 +1,10 @@
 import { Button, Checkbox, Form, Input } from 'antd'
+import React, { useEffect } from 'react'
 
-import React from 'react'
 import { UserService } from '../../api/user/user.service'
 import { mutate } from 'swr'
+import { useCurrentUser } from '../../api/routes'
+import { useRouter } from 'next/router'
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,10 +15,20 @@ const tailLayout = {
 }
 
 const LoginForm = () => {
+  const router = useRouter()
+  const { data: currentUser } = useCurrentUser()
+
+  useEffect(() => {
+    if (currentUser) {
+      router.replace('/')
+    }
+  }, [currentUser])
+
   const onFinish = async (data: any) => {
     const response = await UserService.login(data)
     if (response.type == 'data') {
       mutate('/user')
+      router.replace('/')
     }
   }
 
