@@ -6,11 +6,11 @@ import { Helmet } from 'react-helmet'
 import React from 'react'
 import { SWRConfig } from 'swr'
 import axios from 'axios'
+import getConfig from 'next/config'
 
-axios.defaults.baseURL = process.env.API_URL ?? 'http://localhost:4000'
+const API_URL = getConfig()?.publicRuntimeConfig?.API_URL as string
+axios.defaults.baseURL = API_URL ?? 'http://localhost:4000'
 axios.defaults.withCredentials = true
-
-console.log(process.env.API_URL)
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
