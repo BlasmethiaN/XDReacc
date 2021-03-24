@@ -10,6 +10,8 @@ import axios from 'axios'
 axios.defaults.baseURL = process.env.API_URL ?? 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
+console.log(process.env.API_URL)
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
