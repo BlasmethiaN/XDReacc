@@ -3,7 +3,11 @@ import { Button } from 'antd'
 import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
-import { useCurrentUser } from '../../api/routes'
+import { Route, useCurrentUser } from '../../api/routes'
+import { Menu as AntMenu, Dropdown } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
+import { UserService } from '../../api/user/user.service'
+import { mutate } from 'swr'
 
 const ImgProfile = styled.img`
   height: 50px;
@@ -12,15 +16,41 @@ const ImgProfile = styled.img`
   cursor: pointer;
 `
 
+const Menu = () => {
+  const onClick = async () => {
+    const result = await UserService.logout()
+    if (result) {
+      mutate(Route.CURRENT_USER)
+    }
+  }
+
+  return (
+    <AntMenu>
+      <AntMenu.Item>
+        <Link href="/profile">
+          <a>Profile</a>
+        </Link>
+      </AntMenu.Item>
+      <AntMenu.Item>
+        <a onClick={onClick}>Logout</a>
+      </AntMenu.Item>
+    </AntMenu>
+  )
+}
+
 const Profile = () => {
   const { data: currentUser } = useCurrentUser()
 
   return (
     <Box flex alignItems="center" gap="10px">
       {currentUser ? (
-        <div>{currentUser.displayName}</div>
+        <Dropdown overlay={Menu} trigger={['click']}>
+          <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+            {currentUser.displayName} <DownOutlined />
+          </a>
+        </Dropdown>
       ) : (
-        <Link href="login">
+        <Link href="/login">
           <Button type="primary" size="large">
             Login
           </Button>

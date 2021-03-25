@@ -10,4 +10,8 @@ export class UserService {
   static async login(data: LoginInput) {
     return (await axios.post("/user/login", data)).data as LoginUserResponseDto
   }
+
+  static async logout() {
+    return await axios.post('/user/logout')
+  }
 }
