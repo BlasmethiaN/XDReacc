@@ -4,7 +4,7 @@ import React from 'react'
 import Box from '../components/common/Box'
 import styled from 'styled-components'
 import Link from 'next/link'
-import SignupForm from '../components/index/SignupForm'
+import RegisterForm from '../components/index/RegisterForm'
 
 const H1 = styled.h1`
   font-size: 30px;
@@ -27,7 +27,7 @@ const LoginPage = () => (
           </Link>
           <H1>Signup to XDanku</H1>
         </Box>
-        <SignupForm />
+        <RegisterForm />
         <Link href="login">Already have an account?</Link>
       </Box>
     </Content>

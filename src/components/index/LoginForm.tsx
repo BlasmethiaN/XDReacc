@@ -53,6 +53,7 @@ const LoginForm = () => {
         label="Username"
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
+        required
         validateStatus={error == LoginError.WRONG_USERNAME ? 'error' : ''}
         help={error == LoginError.WRONG_USERNAME && 'Wrong username!'}
       >
@@ -63,6 +64,7 @@ const LoginForm = () => {
         label="Password"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
+        required
         validateStatus={error == LoginError.WRONG_PASSWORD ? 'error' : ''}
         help={error == LoginError.WRONG_PASSWORD && 'Wrong password!'}
       >
