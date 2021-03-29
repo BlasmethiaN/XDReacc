@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <Layout>
       <Navbar />
-      <CenteredContent style={{ display: 'flex' }}>something</CenteredContent>
+      <CenteredContent>something</CenteredContent>
     </Layout>
   )
 }

@@ -13,7 +13,7 @@ const H1 = styled.h1`
 
 const LoginPage = () => (
   <Layout>
-    <CenteredContent style={{ display: 'flex' }}>
+    <CenteredContent>
       <Box flex gap="20px" flexDirection="column">
         <Link href="/">
           <XDlogo src="/xdanku_logo.png" alt="XDanku logo" />
