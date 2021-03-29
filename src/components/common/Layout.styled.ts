@@ -26,3 +26,9 @@ export const XDlogo = styled.img`
   width: 140px;
   cursor: pointer;
 `
+
+export const CenteredBorderContent = styled(CenteredContent)`
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  width: 1000px;
+`
