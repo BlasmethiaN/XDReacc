@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Drawer, Button } from 'antd'
 import { UserService } from '../api/user/user.service'
-import { Menu as AntMenu, Dropdown } from 'antd'
+import { Menu as AntMenu } from 'antd'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
