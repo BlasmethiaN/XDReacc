@@ -15,24 +15,38 @@ const ImgProfile = styled.img`
   cursor: pointer;
 `
 
+const TempDiv = styled.div`
+  width: 80px;
+`
+
+const IsLoggedControl = (props: any) => {
+  if (props.currentUser === undefined) {
+    return <TempDiv />
+  } else if (props.currentUser === '') {
+    return (
+      <Link href="/login">
+        <Button type="primary" size="large">
+          Login
+        </Button>
+      </Link>
+    )
+  } else {
+    return (
+      <Dropdown overlay={Menu} trigger={['click']}>
+        <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+          {props.currentUser.displayName} <DownOutlined />
+        </a>
+      </Dropdown>
+    )
+  }
+}
+
 const Profile = () => {
   const { data: currentUser } = useCurrentUser()
 
   return (
     <Box flex alignItems="center" gap="10px">
-      {currentUser ? (
-        <Dropdown overlay={Menu} trigger={['click']}>
-          <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-            {currentUser.displayName} <DownOutlined />
-          </a>
-        </Dropdown>
-      ) : (
-        <Link href="/login">
-          <Button type="primary" size="large">
-            Login
-          </Button>
-        </Link>
-      )}
+      <IsLoggedControl currentUser={currentUser} />
       <Link href="#">
         <ImgProfile src="/profile_pic.jpg" alt="avatar" />
       </Link>
