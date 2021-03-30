@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import Uploader from './Uploader'
 
 const Form = styled(_Form)`
-  width: 400px;
+  /* width: 500px; */
 `
 
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 4, offset: 2 },
+  wrapperCol: { span: 12 },
 }
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  wrapperCol: { offset: 12, span: 16 },
 }
 
 const UploadForm = () => {
@@ -29,11 +29,11 @@ const UploadForm = () => {
       {...layout}
       size="large"
       layout="horizontal"
-      wrapperCol={{ span: 100, offset: 0 }}
       name="uploadForm"
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      style={{ marginTop: '20%' }}
     >
       <Form.Item
         label="Title"
@@ -50,7 +50,8 @@ const UploadForm = () => {
       <Form.Item label="Tags" name="Tags">
         <Input />
       </Form.Item>
-      <Form.Item label="Upload image" name="image">
+
+      <Form.Item name="image" wrapperCol={{ offset: 6, span: 13 }}>
         <Uploader />
         <Upload />
       </Form.Item>

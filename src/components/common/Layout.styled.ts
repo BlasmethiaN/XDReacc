@@ -27,7 +27,8 @@ export const XDlogo = styled.img`
   cursor: pointer;
 `
 
-export const CenteredBorderContent = styled(CenteredContent)`
+export const CenteredBorderContent = styled.div`
+  flex-grow: 1;
   border-left: 1px solid white;
   border-right: 1px solid white;
   width: 1000px;
