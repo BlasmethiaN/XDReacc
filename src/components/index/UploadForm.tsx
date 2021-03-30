@@ -1,4 +1,11 @@
-import { Form, Input, Button } from 'antd'
+import { Form as _Form, Input, Button, Upload } from 'antd'
+import React from 'react'
+import styled from 'styled-components'
+import Uploader from './Uploader'
+
+const Form = styled(_Form)`
+  width: 400px;
+`
 
 const layout = {
   labelCol: { span: 8 },
@@ -21,8 +28,8 @@ const UploadForm = () => {
     <Form
       {...layout}
       size="large"
-      layout="vertical"
-      wrapperCol={{ span: 30, offset: 0 }}
+      layout="horizontal"
+      wrapperCol={{ span: 100, offset: 0 }}
       name="uploadForm"
       initialValues={{ remember: true }}
       onFinish={onFinish}
@@ -43,7 +50,10 @@ const UploadForm = () => {
       <Form.Item label="Tags" name="Tags">
         <Input />
       </Form.Item>
-
+      <Form.Item label="Upload image" name="image">
+        <Uploader />
+        <Upload />
+      </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Post
