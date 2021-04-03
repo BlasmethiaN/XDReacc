@@ -20,7 +20,7 @@ const Navbar = () => (
         <SearchBar />
       </Box>
       <Box flex alignItems="center" flexDirection="row" gap="10px">
-        <Link href="/testpage">
+        <Link href="/upload">
           <Button type="ghost" size="large">
             Post
           </Button>

@@ -1,14 +1,10 @@
 import React from 'react'
-import { CenteredBorderContent, CenteredContent, Layout } from '../components/common/Layout.styled'
+import { Layout } from '../components/common/Layout.styled'
 import UploadForm from '../components/index/UploadForm'
 
 const UploadPage = () => (
   <Layout>
-    <CenteredContent>
-      <CenteredBorderContent>
-        <UploadForm />
-      </CenteredBorderContent>
-    </CenteredContent>
+    <UploadForm />
   </Layout>
 )
 export default UploadPage
