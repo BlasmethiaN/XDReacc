@@ -1,7 +1,8 @@
-import { Upload, Modal } from 'antd'
+import { Upload, Modal, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
-import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
+import { RcFile, UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
+import axios from 'axios'
 
 function getBase64(file: any) {
   return new Promise((resolve, reject) => {
@@ -12,7 +13,7 @@ function getBase64(file: any) {
   })
 }
 
-const Uploader = () => {
+const Uploader = ({ draftId }: { draftId: string }) => {
   const [previewVisible, setPreviewVisible] = useState<boolean>(false)
   const [previewImage, setPreviewImage] = useState<string>('')
   const [previewTitle, setPreviewTitle] = useState<string>('')
@@ -30,7 +31,23 @@ const Uploader = () => {
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
   }
 
-  const handleChange = (info: UploadChangeParam<UploadFile<any>>) => setFileList(info.fileList)
+  const handleChange = async (info: UploadChangeParam<UploadFile<any>>) => {
+    setFileList(info.fileList)
+    console.log(info.file)
+    if (status !== 'uploading') {
+      console.log(info.file, info.fileList)
+    }
+    if (status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully.`)
+    } else if (status === 'error') {
+      message.error(`${info.file.name} file upload failed.`)
+    }
+  }
+
+  const upload = (file: RcFile) => {
+    console.log(file)
+    return `${axios.defaults.baseURL}/contribution/upload?draftId=${draftId}`
+  }
 
   const uploadButton = (
     <div>
@@ -41,7 +58,9 @@ const Uploader = () => {
   return (
     <>
       <Upload
-        action=""
+        name="image"
+        withCredentials={true}
+        action={upload}
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
@@ -50,7 +69,7 @@ const Uploader = () => {
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
       <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
-        <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        <img alt="preview" style={{ width: '100%' }} src={previewImage} />
       </Modal>
     </>
   )

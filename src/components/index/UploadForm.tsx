@@ -1,9 +1,11 @@
-import { Input, Button, Upload, Row, Col, Form } from 'antd'
+import { Button, Checkbox, Col, Form, Input, Row, Upload } from 'antd'
+import React, { useEffect } from 'react'
+
 import Link from 'next/link'
-import React from 'react'
-import styled from 'styled-components'
-import { XDlogo as _XDlogo } from '../common/Layout.styled'
 import Uploader from './Uploader'
+import { XDlogo as _XDlogo } from '../common/Layout.styled'
+import axios from 'axios'
+import styled from 'styled-components'
 
 const XDlogo = styled(_XDlogo)`
   margin-top: 5%;
@@ -19,7 +21,14 @@ const tailLayout = {
   wrapperCol: { offset: 12, span: 16 },
 }
 
-const UploadForm = () => {
+const UploadForm = ({ draftId }: { draftId: string }) => {
+  useEffect(
+    () => () => {
+      axios.delete(`/contribution/draft/${draftId}`)
+    },
+    []
+  )
+
   const onFinish = (values: any) => {
     console.log('Success:', values)
   }
@@ -57,14 +66,19 @@ const UploadForm = () => {
             <Input.TextArea />
           </Form.Item>
 
-          <Form.Item label="Tags" name="Tags">
+          <Form.Item label="Tags" name="tags">
             <Input />
           </Form.Item>
 
           <Form.Item name="image" wrapperCol={{ offset: 6, span: 13 }}>
-            <Uploader />
+            <Uploader draftId={draftId} />
             <Upload />
           </Form.Item>
+
+          <Form.Item name="original" valuePropName="" wrapperCol={{ offset: 6, span: 13 }}>
+            <Checkbox>Original Content</Checkbox>
+          </Form.Item>
+
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
               Post
