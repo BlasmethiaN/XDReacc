@@ -13,24 +13,16 @@ const UploadPage = () => {
   const { data: currentUser } = useCurrentUser()
 
   useEffect(() => {
-    if (!currentUser) {
+    if (currentUser === null) {
       router.replace('/')
     }
   }, [currentUser])
 
   useEffect(() => {
-    if (currentUser)
-      if (draftId) {
-        const deleteDraft = async () => {
-          await axios.delete(`/draft/${draftId}`)
-        }
-        deleteDraft()
-      } else {
-        const createDraft = async () => {
-          setDraftId((await axios('/contribution/new-draft')).data)
-        }
-        createDraft()
-      }
+    const createDraft = async () => {
+      setDraftId((await axios('/contribution/new-draft')).data)
+    }
+    createDraft()
   }, [])
 
   return <Layout>{draftId ? <UploadForm draftId={draftId} /> : <Spin tip="Loading..." />}</Layout>

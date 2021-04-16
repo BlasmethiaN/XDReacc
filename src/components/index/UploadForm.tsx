@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Uploader from './Uploader'
 import { XDlogo as _XDlogo } from '../common/Layout.styled'
 import axios from 'axios'
+import { useBeforeunload } from 'react-beforeunload'
 import styled from 'styled-components'
 
 const XDlogo = styled(_XDlogo)`
@@ -22,12 +23,12 @@ const tailLayout = {
 }
 
 const UploadForm = ({ draftId }: { draftId: string }) => {
-  useEffect(
-    () => () => {
-      axios.delete(`/contribution/draft/${draftId}`)
-    },
-    []
-  )
+  const deleteDraft = () => {
+    axios.delete(`/contribution/draft/${draftId}`)
+  }
+  useBeforeunload(deleteDraft)
+
+  useEffect(() => deleteDraft, [])
 
   const onFinish = (values: any) => {
     console.log('Success:', values)
@@ -79,7 +80,7 @@ const UploadForm = ({ draftId }: { draftId: string }) => {
             <Checkbox>Original Content</Checkbox>
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
+          <Form.Item {...tailLayout} name="upload">
             <Button type="primary" htmlType="submit">
               Post
             </Button>
