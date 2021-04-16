@@ -71,10 +71,9 @@ const UploadForm = ({ draftId }: { draftId: string }) => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="image" wrapperCol={{ offset: 6, span: 13 }}>
+          <div>
             <Uploader draftId={draftId} />
-            <Upload />
-          </Form.Item>
+          </div>
 
           <Form.Item name="original" valuePropName="" wrapperCol={{ offset: 6, span: 13 }}>
             <Checkbox>Original Content</Checkbox>
