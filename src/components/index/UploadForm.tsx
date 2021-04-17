@@ -1,5 +1,5 @@
-import { Button, Checkbox, Col, Form, Input, Row, Upload } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Checkbox, Col, Form, Input, Row } from 'antd'
+import React, { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 import Uploader from './Uploader'
@@ -7,6 +7,11 @@ import { XDlogo as _XDlogo } from '../common/Layout.styled'
 import axios from 'axios'
 import { useBeforeunload } from 'react-beforeunload'
 import styled from 'styled-components'
+import { ContributionService } from '../../api/contribution/contribution.service'
+import { mutate } from 'swr'
+import { Route } from '../../api/routes'
+import { useRouter } from 'next/router'
+import { CreateContributionError } from '../../api/contribution/types/create-contribution-response.dto'
 
 const XDlogo = styled(_XDlogo)`
   margin-top: 5%;
@@ -23,15 +28,27 @@ const tailLayout = {
 }
 
 const UploadForm = ({ draftId }: { draftId: string }) => {
+  const router = useRouter()
+  const [error, setError] = useState<CreateContributionError | null>()
+
   const deleteDraft = () => {
-    axios.delete(`/contribution/draft/${draftId}`)
+    if (draftId !== null) {
+      axios.delete(`/contribution/draft/${draftId}`)
+    }
   }
   useBeforeunload(deleteDraft)
 
   useEffect(() => deleteDraft, [])
 
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+  const onFinish = async (data: any) => {
+    const response = await ContributionService.createContribution(data, draftId)
+    if (response.type === 'data') {
+      mutate(Route.CONTRIBUTION)
+      console.log(response.data.id)
+      router.replace(`/contribution/${response.data.id}`)
+    } else if (response.type === 'error') {
+      setError(CreateContributionError.NO_IMAGE)
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -73,6 +90,7 @@ const UploadForm = ({ draftId }: { draftId: string }) => {
 
           <div>
             <Uploader draftId={draftId} />
+            {error == CreateContributionError.NO_IMAGE && 'Please select an image.'}
           </div>
 
           <Form.Item name="original" valuePropName="" wrapperCol={{ offset: 6, span: 13 }}>
